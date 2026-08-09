@@ -6,32 +6,24 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
-// Replace "Country" with an ISO country code, for example: "CN".
 def useLocalizedArchiveName = Locale.default.country.equalsIgnoreCase("Country")
 
 base {
-    // Replace "LocalizedArchiveName" with the localized alias.
-    // Prefix local JAR names with an optional alias, for example: "[Alias]" + archives_base_name.
-    // Maven publishing keeps using the lowercase maven_id configured below.
     archivesName = useLocalizedArchiveName
-            ? "[LocalizedArchiveName]${project.archives_base_name}"
+            ? "[交相辉映]${project.archives_base_name}"
             : project.archives_base_name
 }
 
 repositories {
-    // Add repositories to retrieve artifacts from in here.
-    // Only declare repositories required by this project because Loom provides
-    // the repositories needed for Minecraft and its libraries automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-    // for more information about repository declarations.
+    mavenLocal()
     maven {
         name = "Spongepowered"
         url = "https://repo.spongepowered.org/repository/maven-public/"
-    }// Dependency library(FastUtil, Gson, etc) download source
+    }
     maven {
         name = "ModdedMITE"
         url = "https://maven.limingzxc.top/repository/maven-public/"
-    }// Mods & Loaders download source
+    }
 }
 
 configurations {
@@ -39,9 +31,6 @@ configurations {
 }
 
 dependencies {
-    // Dependency versions are maintained in gradle.properties or alongside project-specific declarations below.
-    // Use implementation for required mods, compileOnly for optional integrations,
-    // and localRuntime for mods needed only in the development environment.
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -51,27 +40,28 @@ dependencies {
     fml "com.github.MinecraftIsTooEasy:FishModLoader:3.4.2"
     implementation "com.github.MinecraftIsTooEasy:FishModLoader:3.4.2"
 
-    // The most basic dependency library mod, with a status similar to Fabric API
     implementation "com.github.MinecraftIsTooEasy:RustedIronCore:1.5.5"
+    implementation "com.github.MinecraftIsTooEasy:ManyLib:2.3.1"
 
-    // To add strong dependencies, use "implementation" like above
-    // To compile mod integrations(e.g. ModMenu), use "compileOnly"
-    // To add mods for running client, use "localRuntime"
+    implementation "com.github.MinecraftIsTooEasy:BeyondExtreme:3.0.9"
+    implementation "com.github.MinecraftIsTooEasy:Extreme:0.1.6.13"
+    implementation "com.github.MinecraftIsTooEasy:MITE-ITE:2.0.29"
+    implementation "com.github.MinecraftIsTooEasy:MITE-ITF-Reborn:17.2.29"
+
 }
 
 def fmlResolvedFile = configurations.fml.singleFile
 
 loom {
-    accessWidenerPath = file("src/main/resources/modid.accesswidener")
+//    accessWidenerPath = file("src/main/resources/modslinker.accesswidener")
     mergedMinecraftJar()
     setFML(fmlResolvedFile)
     dependencies.add("mappings", fmlMCPMappings())
     mods {
-        "modid" {
+        "ModsLinker" {
             sourceSet sourceSets.main
 //            sourceSet sourceSets.client
 //            sourceSet sourceSets.server
-//            For modules in the 'src' directory, only the main source set is required by default.
         }
     }
     runs {
@@ -104,8 +94,6 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 java {
-    // Loom automatically attaches sourcesJar to remapSourcesJar and the build lifecycle when it is present.
-    // Remove this line only when source artifacts should not be generated.
     withSourcesJar()
 
     sourceCompatibility = JavaVersion.VERSION_17
@@ -120,7 +108,6 @@ jar {
     }
 }
 
-// Configure the Maven publication.
 publishing {
     publications {
         create("mavenJava", MavenPublication) {
@@ -129,13 +116,7 @@ publishing {
         }
     }
 
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-        // Add repositories to publish to here.
-        // Notice: This block does NOT have the same function as the block in the top level.
-        // The repositories here will be used for publishing your artifact, not for
-        // retrieving dependencies.
-
         // ModdedMITE release repository.
         maven {
             name = "ModdedMITE"
