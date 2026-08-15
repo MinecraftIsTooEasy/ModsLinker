@@ -23,6 +23,7 @@ public class LinkerConfigs extends SimpleConfigs {
 	public static final ConfigInteger EndermanSpawn = new ConfigInteger("末影人刷新率", 10, 1, 100);
 	public static final ConfigInteger AncientBoneLordSpawn = new ConfigInteger("古代亡骸领主刷新率", 5, 1, 100);
 	public static final ConfigInteger InfernalCreeperSpawn = new ConfigInteger("地狱苦力怕刷新率", 10, 1, 100);
+	public static final ConfigInteger GhastSpawn = new ConfigInteger("恶魂刷新率", 50, 1, 100);
 	
 	public static final ConfigInteger ZombieLordSpawn = new ConfigInteger("僵尸领主刷新率", 1, 1, 100);
 	public static final ConfigInteger ZombiePigmanLordSpawn = new ConfigInteger("僵尸猪人领主刷新率", 1, 1, 100);
@@ -50,7 +51,7 @@ public class LinkerConfigs extends SimpleConfigs {
 	public static final ConfigInteger UnderworldTungstenFrequency = new ConfigInteger("地下世界钨矿刷新率", 5, 1, 100);
 
 	public static final ConfigInteger FishVoucherFrequency = new ConfigInteger("钓鱼凭证权重", 2, 1, 100);
-	public static final ConfigInteger VillagerVoucherFrequency = new ConfigInteger("挖掘绿宝石掉落交易凭证概率", 50, 1, 100);
+//	public static final ConfigInteger VillagerVoucherFrequency = new ConfigInteger("挖掘绿宝石掉落交易凭证概率", 50, 1, 100);
 
 	public static final ConfigBoolean CustomNuggetRecipes = new ConfigBoolean("自定义粒合成锭配方", true);
 
@@ -66,13 +67,13 @@ public class LinkerConfigs extends SimpleConfigs {
 	
 	static {
 		general = List.of(RateMultiplier, LichHealth,
-				EndermanSpawn, AncientBoneLordSpawn, InfernalCreeperSpawn,
+				EndermanSpawn, AncientBoneLordSpawn, InfernalCreeperSpawn, GhastSpawn,
 				ZombieLordSpawn, ZombiePigmanLordSpawn, WanderingWitchSpawn, AnnihilationSkeletonSpawn,
 				ExchangerSpawn, ZombieDoorSpawn, MirrorSkeletonSpawn,
 				ZombieDoorDeepSpawn, SpiderQueenSpawn, ZombieMinerSpawn, ZombieDoorLordSpawn, BedrockElementalSpawn,
 				SpiderKingSpawn, RetinueZombieSpawn, WitherBoneLordSpawn, PigmanLordSpawn, SpiritSpawn,
 				OverworldNickelFrequency, UnderworldNickelFrequency, UnderworldTungstenFrequency,
-				FishVoucherFrequency, VillagerVoucherFrequency,
+				FishVoucherFrequency,
 				CustomNuggetRecipes);
 
 		values = new ArrayList<>();

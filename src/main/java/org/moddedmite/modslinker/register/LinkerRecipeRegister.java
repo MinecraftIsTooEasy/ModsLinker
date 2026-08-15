@@ -85,18 +85,7 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 			if (result.getItem() == Item.legsAdamantium) {
 				return true;
 			}
-			if (result.getItem() == Items.nickelIngot) {
-				return true;
-			}
-			if (result.getItem() == Items.tungstenIngot) {
-				return true;
-			}
-			
-			if (LinkerConfigs.CustomNuggetRecipes.getBooleanValue()) {
-				if (result == null) return false;
-				if (result.getItem() == Items.nickelIngot && hasIngredients(inputs, Items.nickelNugget)) return true;
-				if (result.getItem() == Items.tungstenIngot && hasIngredients(inputs, Items.tungstenNugget)) return true;
-			}
+
 			return false;
 		});
 		
@@ -133,6 +122,22 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				if (result.getItem() == MITEITEItemRegistryInit.VIBRANIUM_INGOT && hasIngredients(inputs, MITEITEItemRegistryInit.VIBRANIUM_NUGGET)) return true;
 				return false;
 			});
+			
+			event.getShapeless().removeIf(recipe -> {
+				ItemStack result = recipe.result;
+				Object[] inputs = recipe.inputs;
+				if (result == null) return false;
+				if (result.getItem() == Items.nickelIngot && hasIngredients(inputs, Items.nickelNugget)) {
+					return true;
+				}
+				if (result.getItem() == Items.tungstenIngot && hasIngredients(inputs, Items.tungstenNugget)) {
+					return true;
+				}
+				if (result.getItem() == Items.forgingNote) {
+					return true;
+				}
+				return false;
+			});
 		}
 
 		event.registerShapedRecipe(
@@ -156,8 +161,8 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				'N', Items.nickelChestplate).extendsNBT();
 		event.registerShapedRecipe(
 				new ItemStack(Item.legsAncientMetal), true,
+				"AAA",
 				"ANA",
-				"A A",
 				"A A",
 				'A', Item.ingotAncientMetal,
 				'N', Items.nickelLeggings).extendsNBT();
@@ -443,6 +448,7 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 
 	private static boolean hasIngredients(Object[] inputs, Item ing) {
 		for (Object input : inputs) {
+			if (input instanceof Item && input == ing) return true;
 			if (input instanceof ItemStack && ((ItemStack) input).getItem() == ing) return true;
 		}
 		return false;

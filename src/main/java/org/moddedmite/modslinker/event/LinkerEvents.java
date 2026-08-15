@@ -4,8 +4,10 @@ import cn.wensc.mitemod.extreme.entity.EntityExchanger;
 import cn.wensc.mitemod.extreme.entity.EntityMirrorSkeleton;
 import cn.wensc.mitemod.extreme.entity.EntityZombieDoor;
 import cn.wensc.mitemod.extreme.register.EXItemsRegistryInit;
+import net.minecraft.EntityGhast;
 import net.minecraft.ItemStack;
 import net.oilcake.mitelros.config.ITFConfig;
+import net.xiaoyu233.mitemod.miteite.entity.EntityZombieLord;
 import org.moddedmite.modslinker.LinkerConfigs;
 import org.moddedmite.modslinker.register.LinkerRecipeRegister;
 import com.google.common.eventbus.Subscribe;
@@ -36,7 +38,6 @@ import net.oilcake.mitelros.entity.mob.EntityRetinueZombie;
 import net.oilcake.mitelros.entity.mob.EntitySpiderKing;
 import net.oilcake.mitelros.entity.mob.EntitySpirit;
 import net.oilcake.mitelros.entity.mob.EntityWitherBoneLord;
-import net.oilcake.mitelros.entity.mob.EntityZombieLord;
 import net.oilcake.mitelros.registry.block.Blocks;
 import net.xiaoyu233.fml.reload.event.MITEEvents;
 import net.xiaoyu233.fml.reload.event.SoundsRegisterEvent;
@@ -64,8 +65,8 @@ public class LinkerEvents extends Handlers {
         Handlers.Crafting.registerPost(new LinkerRecipeRegister());
 
         Handlers.Smelting.register(event -> {
-	        event.register(Blocks.blockNickel, new ItemStack(EXItemsRegistryInit.itemGemShard, 1, 6));
-	        event.register(Blocks.blockTungsten, new ItemStack(EXItemsRegistryInit.itemGemShard, 1, 2));
+	        event.register(new ItemStack(Blocks.blockNickel).getItem(), new ItemStack(EXItemsRegistryInit.itemGemShard, 1, 0), 3);
+	        event.register(new ItemStack(Blocks.blockTungsten).getItem(), new ItemStack(EXItemsRegistryInit.itemGemShard, 1, 2), 4);
         });
         
         Handlers.EntityEvent.register(new IEntityEventListener() {
@@ -138,6 +139,7 @@ public class LinkerEvents extends Handlers {
                     BiomeSpawnUtil.removeSpawn(EntitySpirit.class, EnumCreatureType.monster, biome);
                 }
                 for (BiomeGenBase biome : hellBiomes) {
+                    BiomeSpawnUtil.removeSpawn(EntityGhast.class, EnumCreatureType.monster, biome);
                     BiomeSpawnUtil.removeSpawn(EntityBedrockElemental.class, EnumCreatureType.monster, biome);
                     BiomeSpawnUtil.removeSpawn(EntityExchanger.class, EnumCreatureType.monster, biome);
                     BiomeSpawnUtil.removeSpawn(EntityMirrorSkeleton.class, EnumCreatureType.monster, biome);
@@ -149,6 +151,7 @@ public class LinkerEvents extends Handlers {
                         BiomeSpawnUtil.addSpawn(EntityEnderman.class, LinkerConfigs.EndermanSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityAncientBoneLord.class, LinkerConfigs.AncientBoneLordSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityInfernalCreeper.class, LinkerConfigs.InfernalCreeperSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityGhast.class, LinkerConfigs.GhastSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
 
                         BiomeSpawnUtil.addSpawn(EntityZombieLord.class, LinkerConfigs.ZombieLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityZombiePigmanLord.class, LinkerConfigs.ZombiePigmanLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
@@ -181,26 +184,28 @@ public class LinkerEvents extends Handlers {
                 } else {
                     for (BiomeGenBase biome : overworldBiomes) {
                         BiomeSpawnUtil.addSpawn(EntityEnderman.class, LinkerConfigs.EndermanSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
-
+                        
+                        BiomeSpawnUtil.addSpawn(EntityZombieDoor.class, LinkerConfigs.ZombieDoorSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityZombieLord.class, LinkerConfigs.ZombieLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityWanderingWitch.class, LinkerConfigs.WanderingWitchSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
-                        BiomeSpawnUtil.addSpawn(EntityAnnihilationSkeleton.class, LinkerConfigs.AnnihilationSkeletonSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityRetinueZombie.class, LinkerConfigs.RetinueZombieSpawn.getIntegerValue(), 4, 4, EnumCreatureType.monster, biome);
                     }
 
                     for (BiomeGenBase biome : allBiome) {
-                        BiomeSpawnUtil.addSpawn(EntityZombieDoor.class, LinkerConfigs.ZombieDoorSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityAnnihilationSkeleton.class, LinkerConfigs.AnnihilationSkeletonSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityExchanger.class, LinkerConfigs.ExchangerSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityMirrorSkeleton.class, LinkerConfigs.MirrorSkeletonSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntitySpiderQueen.class, LinkerConfigs.SpiderQueenSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                     }
 
                     for (BiomeGenBase biome : underworldBiomes) {
+                        BiomeSpawnUtil.addSpawn(EntityAncientBoneLord.class, LinkerConfigs.AncientBoneLordSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityZombieDoorDeep.class, LinkerConfigs.ZombieDoorDeepSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntitySpiderQueen.class, LinkerConfigs.SpiderQueenSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityZombieMiner.class, LinkerConfigs.ZombieMinerSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityZombieDoorLord.class, LinkerConfigs.ZombieDoorLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityBedrockElemental.class, LinkerConfigs.BedrockElementalSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityGhast.class, LinkerConfigs.GhastSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                     }
                     for (BiomeGenBase biome : hellBiomes) {
                         BiomeSpawnUtil.addSpawn(EntityZombiePigmanLord.class, LinkerConfigs.ZombiePigmanLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
@@ -209,6 +214,8 @@ public class LinkerEvents extends Handlers {
                         BiomeSpawnUtil.addSpawn(EntityWitherBoneLord.class, LinkerConfigs.WitherBoneLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityPigmanLord.class, LinkerConfigs.PigmanLordSpawn.getIntegerValue(), 1, 2, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntitySpirit.class, LinkerConfigs.SpiritSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityGhast.class, LinkerConfigs.GhastSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityInfernalCreeper.class, LinkerConfigs.InfernalCreeperSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                     }
                 }
             }
