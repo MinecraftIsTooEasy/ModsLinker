@@ -49,19 +49,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LinkerEvents extends Handlers {
-    @Subscribe
-    public void onSoundsRegister(SoundsRegisterEvent event) {
-    }
 
     public static void register() {
-        MITEEvents.MITE_EVENT_BUS.register(new LinkerEvents());
-
-        Handlers.Initialization.register(new IInitializationListener() {
-            @Override
-            public void onClientStarted(Minecraft client) {
-            }
-        });
-        
         Handlers.Crafting.registerPost(new LinkerRecipeRegister());
 
         Handlers.Smelting.register(event -> {

@@ -1,11 +1,15 @@
-# Fish Example Mod
+# ModsLinker 交相辉映
 
-## Setup
+串联各个MITE原创玩法Mod
 
-For setup instructions please see the [fish documentation page](https://minecraftistooeasy.github.io/pages/docs-navigation.html) that relates to the IDE that you are using.
+可自由配置ITFR中怪物成长比率、巫妖生命值、各种凭证怪刷新率、钓鱼凭证权重、ITFR矿物刷新率
 
-## License
+更难的粒锭配方（可配置）
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+ITFR中的国王蜘蛛、猪人领主、凋零骷髅领主也可掉落凭证
 
-Some content refers to Fabric Example Mod
+镍、钨可烧制成宝石
+
+全新的装备、武器升级配方，并将镍、钨也加入其中
+
+金属棒也可附魔毁灭
