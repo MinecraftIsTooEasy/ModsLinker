@@ -18,11 +18,15 @@
   "entrypoints": {
     "main": [
       "org.moddedmite.modslinker.ModsLinker"
+    ],
+    "mite_ite": [
+      "org.moddedmite.modslinker.LinkerITEPlugin"
     ]
   },
   "mixins": [
     "modslinker.mixins.json"
   ],
+  "accessWidener": "modslinker.accesswidener",
   "depends": {
     "fishmodloader": ">=3.4.0",
     "minecraft": "1.6.4-mite",

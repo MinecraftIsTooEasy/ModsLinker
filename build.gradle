@@ -43,9 +43,9 @@ dependencies {
     implementation "com.github.MinecraftIsTooEasy:RustedIronCore:1.5.5"
     implementation "com.github.MinecraftIsTooEasy:ManyLib:2.3.1"
 
-    implementation "com.github.MinecraftIsTooEasy:BeyondExtreme:3.0.9"
+    implementation "com.github.MinecraftIsTooEasy:BeyondExtreme:3.0.11"
     implementation "com.github.MinecraftIsTooEasy:Extreme:0.1.6.13"
-    implementation "com.github.MinecraftIsTooEasy:MITE-ITE:2.0.29"
+    implementation "com.github.MinecraftIsTooEasy:MITE-ITE:2.0.30.1"
     implementation "com.github.MinecraftIsTooEasy:MITE-ITF-Reborn:17.2.29"
 
 }
@@ -53,7 +53,7 @@ dependencies {
 def fmlResolvedFile = configurations.fml.singleFile
 
 loom {
-//    accessWidenerPath = file("src/main/resources/modslinker.accesswidener")
+    accessWidenerPath = file("src/main/resources/modslinker.accesswidener")
     mergedMinecraftJar()
     setFML(fmlResolvedFile)
     dependencies.add("mappings", fmlMCPMappings())

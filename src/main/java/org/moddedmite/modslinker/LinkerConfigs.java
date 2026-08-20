@@ -18,7 +18,10 @@ import java.util.List;
 
 public class LinkerConfigs extends SimpleConfigs {
 	public static final ConfigDouble RateMultiplier = new ConfigDouble("ITFR中怪物成长比率", 1, 0.1, 2.0);
-	public static final ConfigDouble LichHealth = new ConfigDouble("巫妖生命值", 75.0D, 1.0D, 10000.0D);
+	public static final ConfigDouble LichHealth = new ConfigDouble("巫妖生命值", 75.0D, 1.0D, 10000.0D, false, "");
+
+	public static final ConfigDouble WitherHealth = new ConfigDouble("凋灵生命值", 300.0D, 1.0D, 10000.0D, false, "");
+	public static final ConfigDouble WitherDamage = new ConfigDouble("凋灵伤害", 8.0D, 1.0D, 10000.0D, false, "");
 	
 	public static final ConfigInteger EndermanSpawn = new ConfigInteger("末影人刷新率", 10, 1, 100);
 	public static final ConfigInteger AncientBoneLordSpawn = new ConfigInteger("古代亡骸领主刷新率", 5, 1, 100);
@@ -53,6 +56,8 @@ public class LinkerConfigs extends SimpleConfigs {
 	public static final ConfigInteger FishVoucherFrequency = new ConfigInteger("钓鱼凭证权重", 2, 1, 100);
 //	public static final ConfigInteger VillagerVoucherFrequency = new ConfigInteger("挖掘绿宝石掉落交易凭证概率", 50, 1, 100);
 
+	public static final ConfigDouble mobSpawningOffset = new ConfigDouble("怪物生成速率加成", 0.0, 0.0, 3.0);
+
 	public static final ConfigBoolean CustomNuggetRecipes = new ConfigBoolean("自定义粒合成锭配方", true);
 
 	public static final List<ConfigBase<?>> general;
@@ -66,14 +71,14 @@ public class LinkerConfigs extends SimpleConfigs {
 	public static final LinkerConfigs Instance;
 	
 	static {
-		general = List.of(RateMultiplier, LichHealth,
+		general = List.of(RateMultiplier, LichHealth, WitherHealth, WitherDamage,
 				EndermanSpawn, AncientBoneLordSpawn, InfernalCreeperSpawn, GhastSpawn,
 				ZombieLordSpawn, ZombiePigmanLordSpawn, WanderingWitchSpawn, AnnihilationSkeletonSpawn,
 				ExchangerSpawn, ZombieDoorSpawn, MirrorSkeletonSpawn,
 				ZombieDoorDeepSpawn, SpiderQueenSpawn, ZombieMinerSpawn, ZombieDoorLordSpawn, BedrockElementalSpawn,
 				SpiderKingSpawn, RetinueZombieSpawn, WitherBoneLordSpawn, PigmanLordSpawn, SpiritSpawn,
 				OverworldNickelFrequency, UnderworldNickelFrequency, UnderworldTungstenFrequency,
-				FishVoucherFrequency,
+				FishVoucherFrequency, mobSpawningOffset,
 				CustomNuggetRecipes);
 
 		values = new ArrayList<>();

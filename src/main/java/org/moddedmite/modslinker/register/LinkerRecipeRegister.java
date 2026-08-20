@@ -1,5 +1,6 @@
 package org.moddedmite.modslinker.register;
 
+import cn.wensc.mitemod.extreme.item.ItemEnhanceGem;
 import cn.wensc.mitemod.extreme.register.EXItemsRegistryInit;
 import org.moddedmite.modslinker.LinkerConfigs;
 import moddedmite.rustedironcore.api.event.events.CraftingRecipeRegisterEvent;
@@ -16,7 +17,6 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 	public void accept(CraftingRecipeRegisterEvent event) {
 		event.getShaped().removeIf(recipe -> {
 			ItemStack result = recipe.result;
-			Object[] inputs = recipe.inputs;
 			if (result.getItem() == EXItemsRegistryInit.clubAdamantium) {
 				return true;
 			}
@@ -42,6 +42,9 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				return true;
 			}
 			if (result.getItem() == BEXItems.clubEnchant) {
+				return true;
+			}
+			if (result.getItem() == MITEITEItemRegistryInit.VIBRANIUM_BATTLE_AXE) {
 				return true;
 			}
 
@@ -139,6 +142,23 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				return false;
 			});
 		}
+		
+		event.registerShapedRecipe(
+				new ItemStack(Items.tungstenBattleAxe), true,
+				"ANA",
+				"ASA",
+				" S ",
+				'A', Items.tungstenIngot,
+				'S', Item.stick,
+				'N', Item.battleAxeAncientMetal).extendsNBT().keepQuality();
+		event.registerShapedRecipe(
+				new ItemStack(MITEITEItemRegistryInit.VIBRANIUM_BATTLE_AXE), true,
+				"ANA",
+				"ASA",
+				" S ",
+				'A', MITEITEItemRegistryInit.VIBRANIUM_INGOT,
+				'S', MITEITEItemRegistryInit.OBSIDIAN_STICK,
+				'N', Items.tungstenBattleAxe).extendsNBT().keepQuality();
 
 		event.registerShapedRecipe(
 				new ItemStack(Item.bootsAncientMetal), true,
@@ -444,6 +464,17 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				'*', BEXItems.enchantIngot,
 				'A', EXItemsRegistryInit.voucherClubCore,
 				'B', EXItemsRegistryInit.clubMithril).extendsNBT().keepQuality();
+		
+		for (Item item : Item.itemsList) {
+			if (item instanceof ItemEnhanceGem enhanceGem) {
+				for (int i = 0; i < enhanceGem.getNumSubtypes(); i++)
+					event.registerShapelessRecipe(new ItemStack(EXItemsRegistryInit.itemEnhanceGemBox),
+							true,
+							new ItemStack(enhanceGem, 1, i),
+							new ItemStack(enhanceGem, 1, i),
+							new ItemStack(enhanceGem, 1, i));
+			}
+		}
 	}
 
 	private static boolean hasIngredients(Object[] inputs, Item ing) {

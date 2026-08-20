@@ -1,5 +1,6 @@
 package org.moddedmite.modslinker;
 
+import net.xiaoyu233.fml.reload.event.MITEEvents;
 import org.moddedmite.modslinker.event.LinkerEvents;
 import fi.dy.masa.malilib.config.ConfigManager;
 import net.fabricmc.api.ModInitializer;
@@ -17,6 +18,7 @@ public class ModsLinker implements ModInitializer {
     public void onInitialize() {
         ModResourceManager.addResourcePackDomain(MOD_ID);
         LinkerEvents.register();
+        MITEEvents.MITE_EVENT_BUS.register(new LinkerEvents());
         LinkerConfigs.getInstance().load();
         ConfigManager.getInstance().registerConfig(LinkerConfigs.getInstance());
     }

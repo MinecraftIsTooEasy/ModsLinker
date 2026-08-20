@@ -4,11 +4,16 @@ import cn.wensc.mitemod.extreme.entity.EntityExchanger;
 import cn.wensc.mitemod.extreme.entity.EntityMirrorSkeleton;
 import cn.wensc.mitemod.extreme.entity.EntityZombieDoor;
 import cn.wensc.mitemod.extreme.register.EXItemsRegistryInit;
+import moddedmite.rustedironcore.api.event.events.SpawnConditionRegisterEvent;
+import moddedmite.rustedironcore.api.event.handler.SpawnConditionHandler;
 import net.minecraft.EntityGhast;
 import net.minecraft.ItemStack;
 import net.oilcake.mitelros.config.ITFConfig;
+import net.xiaoyu233.fml.reload.event.EnchantmentRegistryEvent;
+import net.xiaoyu233.mitemod.miteite.api.ITEWorld;
 import net.xiaoyu233.mitemod.miteite.entity.EntityZombieLord;
 import org.moddedmite.modslinker.LinkerConfigs;
+import org.moddedmite.modslinker.enchantment.LinkerEnchantments;
 import org.moddedmite.modslinker.register.LinkerRecipeRegister;
 import com.google.common.eventbus.Subscribe;
 import moddedmite.rustedironcore.api.event.Handlers;
@@ -28,6 +33,7 @@ import net.minecraft.EnumCreatureType;
 import net.minecraft.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.moddedmite.mitemod.bex.entity.EntityBedrockElemental;
+import net.moddedmite.mitemod.bex.entity.EntityGhastLord;
 import net.moddedmite.mitemod.bex.entity.EntitySpiderQueen;
 import net.moddedmite.mitemod.bex.entity.EntityZombieDoorDeep;
 import net.moddedmite.mitemod.bex.entity.EntityZombieDoorLord;
@@ -47,10 +53,23 @@ import net.xiaoyu233.mitemod.miteite.entity.EntityZombiePigmanLord;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class LinkerEvents extends Handlers {
+    
+    @Subscribe
+    public void onEnchantmentRegister(EnchantmentRegistryEvent event) {
+        LinkerEnchantments.register(event);
+    }
 
     public static void register() {
+        LinkerModifierEvents modifierEvents = new LinkerModifierEvents();
+        Handlers.Combat.register(modifierEvents);
+
+        Handlers.Tick.register(modifierEvents);
+
+        Handlers.Trading.register(new LinkerTrade());
+
         Handlers.Crafting.registerPost(new LinkerRecipeRegister());
 
         Handlers.Smelting.register(event -> {
@@ -185,6 +204,7 @@ public class LinkerEvents extends Handlers {
                         BiomeSpawnUtil.addSpawn(EntityExchanger.class, LinkerConfigs.ExchangerSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityMirrorSkeleton.class, LinkerConfigs.MirrorSkeletonSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntitySpiderQueen.class, LinkerConfigs.SpiderQueenSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityZombieDoorDeep.class, LinkerConfigs.ZombieDoorDeepSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                     }
 
                     for (BiomeGenBase biome : underworldBiomes) {
@@ -195,6 +215,7 @@ public class LinkerEvents extends Handlers {
                         BiomeSpawnUtil.addSpawn(EntityZombieDoorLord.class, LinkerConfigs.ZombieDoorLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityBedrockElemental.class, LinkerConfigs.BedrockElementalSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityGhast.class, LinkerConfigs.GhastSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityInfernalCreeper.class, LinkerConfigs.InfernalCreeperSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                     }
                     for (BiomeGenBase biome : hellBiomes) {
                         BiomeSpawnUtil.addSpawn(EntityZombiePigmanLord.class, LinkerConfigs.ZombiePigmanLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
@@ -216,6 +237,103 @@ public class LinkerEvents extends Handlers {
 //                event.getForProfession()
 //            }
 //        });
-        
+        Handlers.SpawnCondition.register(event -> {
+	        event.register(EntityZombieLord.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityZombieLord.class;
+                }
+                return null;
+            });
+	        event.register(EntityZombiePigmanLord.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityZombiePigmanLord.class;
+                }
+                return null;
+            });
+	        event.register(EntityWanderingWitch.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityWanderingWitch.class;
+                }
+                return null;
+            });
+	        event.register(EntityAnnihilationSkeleton.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityAnnihilationSkeleton.class;
+                }
+                return null;
+            });
+	        event.register(EntitySpiderQueen.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntitySpiderQueen.class;
+                }
+                return null;
+            });
+	        event.register(EntityGhastLord.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityGhastLord.class;
+                }
+                return null;
+            });
+	        event.register(EntityZombieDoorLord.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityZombieDoorLord.class;
+                }
+                return null;
+            });
+	        event.register(EntityBedrockElemental.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityBedrockElemental.class;
+                }
+                return null;
+            });
+	        event.register(EntityZombieDoorDeep.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityZombieDoorDeep.class;
+                }
+                return null;
+            });
+	        event.register(EntityZombieMiner.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityZombieMiner.class;
+                }
+                return null;
+            });
+	        event.register(EntityMirrorSkeleton.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityMirrorSkeleton.class;
+                }
+                return null;
+            });
+	        event.register(EntityExchanger.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityExchanger.class;
+                }
+                return null;
+            });
+	        event.register(EntityZombieDoor.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityZombieDoor.class;
+                }
+                return null;
+            });
+	        event.register(EntitySpiderKing.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntitySpiderKing.class;
+                }
+                return null;
+            });
+	        event.register(EntityWitherBoneLord.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityWitherBoneLord.class;
+                }
+                return null;
+            });
+	        event.register(EntityPigmanLord.class, (world, x, y, z) -> {
+                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                    return EntityPigmanLord.class;
+                }
+                return null;
+            });
+        });
     }
 }
