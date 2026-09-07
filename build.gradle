@@ -55,7 +55,7 @@ dependencies {
     implementation "com.github.MinecraftIsTooEasy:ManyLib:2.3.1"
 
     implementation "org.moddedmite:beyond-extreme:3.0.11"
-    implementation "com.github.MinecraftIsTooEasy:Extreme:0.1.6.13"
+    implementation "org.moddedmite:extreme:0.1.6.13"
     implementation "org.moddedmite:MITE-ITE:2.0.30"
     implementation "org.moddedmite:mite-itf-reborn:17.3.0"
     localRuntime "org.moddedmite:waila:2.0.8"
