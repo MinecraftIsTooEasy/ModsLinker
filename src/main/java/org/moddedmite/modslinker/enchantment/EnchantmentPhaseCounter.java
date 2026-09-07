@@ -31,6 +31,6 @@ public class EnchantmentPhaseCounter extends Enchantment implements ITFEnchantme
 	
 	@Override
 	public boolean isTreasure() {
-		return false;
+		return true;
 	}
 }

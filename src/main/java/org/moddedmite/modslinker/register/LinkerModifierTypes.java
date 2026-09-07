@@ -32,7 +32,7 @@ public class LinkerModifierTypes {
             stack -> stack.getItem() instanceof ItemBoots);
 
     public static final ToolModifierTypes SLAUGHTER = new ToolModifierTypes(
-            0.05f, "slaughter", EnumChatFormatting.RED, 5, ToolModifierTypes::isWeapon, 4);
+            0.05f, "slaughter", EnumChatFormatting.RED, 1, ToolModifierTypes::isWeapon, 4);
 
     public static final ToolModifierTypes DISINTEGRATION = new ToolModifierTypes(
             1.0f, "disintegration", EnumChatFormatting.AQUA, 5, ToolModifierTypes::isWeapon, 4);

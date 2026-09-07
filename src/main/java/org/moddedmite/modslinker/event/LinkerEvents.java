@@ -42,7 +42,6 @@ import net.moddedmite.mitemod.bex.register.BEXItems;
 import net.oilcake.mitelros.entity.mob.EntityPigmanLord;
 import net.oilcake.mitelros.entity.mob.EntityRetinueZombie;
 import net.oilcake.mitelros.entity.mob.EntitySpiderKing;
-import net.oilcake.mitelros.entity.mob.EntitySpirit;
 import net.oilcake.mitelros.entity.mob.EntityWitherBoneLord;
 import net.oilcake.mitelros.registry.block.Blocks;
 import net.xiaoyu233.fml.reload.event.MITEEvents;
@@ -144,7 +143,7 @@ public class LinkerEvents extends Handlers {
                     BiomeSpawnUtil.removeSpawn(EntityRetinueZombie.class, EnumCreatureType.monster, biome);
                     BiomeSpawnUtil.removeSpawn(EntityWitherBoneLord.class, EnumCreatureType.monster, biome);
                     BiomeSpawnUtil.removeSpawn(EntityPigmanLord.class, EnumCreatureType.monster, biome);
-                    BiomeSpawnUtil.removeSpawn(EntitySpirit.class, EnumCreatureType.monster, biome);
+//                    BiomeSpawnUtil.removeSpawn(EntitySpirit.class, EnumCreatureType.monster, biome);
                 }
                 for (BiomeGenBase biome : hellBiomes) {
                     BiomeSpawnUtil.removeSpawn(EntityGhast.class, EnumCreatureType.monster, biome);
@@ -180,20 +179,21 @@ public class LinkerEvents extends Handlers {
                         BiomeSpawnUtil.addSpawn(EntityRetinueZombie.class, LinkerConfigs.RetinueZombieSpawn.getIntegerValue(), 4, 4, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityWitherBoneLord.class, LinkerConfigs.WitherBoneLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityPigmanLord.class, LinkerConfigs.PigmanLordSpawn.getIntegerValue(), 1, 2, EnumCreatureType.monster, biome);
-                        BiomeSpawnUtil.addSpawn(EntitySpirit.class, LinkerConfigs.SpiritSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+//                        BiomeSpawnUtil.addSpawn(EntitySpirit.class, LinkerConfigs.SpiritSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         
                         BiomeSpawnUtil.addSpawn(EntityZombiePigmanLord.class, LinkerConfigs.ZombiePigmanLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityBedrockElemental.class, LinkerConfigs.BedrockElementalSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityExchanger.class, LinkerConfigs.ExchangerSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityWitherBoneLord.class, LinkerConfigs.WitherBoneLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityPigmanLord.class, LinkerConfigs.PigmanLordSpawn.getIntegerValue(), 1, 2, EnumCreatureType.monster, biome);
-                        BiomeSpawnUtil.addSpawn(EntitySpirit.class, LinkerConfigs.SpiritSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+//                        BiomeSpawnUtil.addSpawn(EntitySpirit.class, LinkerConfigs.SpiritSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                     }
                 } else {
                     for (BiomeGenBase biome : overworldBiomes) {
                         BiomeSpawnUtil.addSpawn(EntityEnderman.class, LinkerConfigs.EndermanSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                         
                         BiomeSpawnUtil.addSpawn(EntityZombieDoor.class, LinkerConfigs.ZombieDoorSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+                        BiomeSpawnUtil.addSpawn(EntityZombieDoorDeep.class, LinkerConfigs.ZombieDoorDeepSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityZombieLord.class, LinkerConfigs.ZombieLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityWanderingWitch.class, LinkerConfigs.WanderingWitchSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityRetinueZombie.class, LinkerConfigs.RetinueZombieSpawn.getIntegerValue(), 4, 4, EnumCreatureType.monster, biome);
@@ -204,7 +204,6 @@ public class LinkerEvents extends Handlers {
                         BiomeSpawnUtil.addSpawn(EntityExchanger.class, LinkerConfigs.ExchangerSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityMirrorSkeleton.class, LinkerConfigs.MirrorSkeletonSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntitySpiderQueen.class, LinkerConfigs.SpiderQueenSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
-                        BiomeSpawnUtil.addSpawn(EntityZombieDoorDeep.class, LinkerConfigs.ZombieDoorDeepSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                     }
 
                     for (BiomeGenBase biome : underworldBiomes) {
@@ -223,7 +222,7 @@ public class LinkerEvents extends Handlers {
                         BiomeSpawnUtil.addSpawn(EntityExchanger.class, LinkerConfigs.ExchangerSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityWitherBoneLord.class, LinkerConfigs.WitherBoneLordSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityPigmanLord.class, LinkerConfigs.PigmanLordSpawn.getIntegerValue(), 1, 2, EnumCreatureType.monster, biome);
-                        BiomeSpawnUtil.addSpawn(EntitySpirit.class, LinkerConfigs.SpiritSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
+//                        BiomeSpawnUtil.addSpawn(EntitySpirit.class, LinkerConfigs.SpiritSpawn.getIntegerValue(), 1, 1, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityGhast.class, LinkerConfigs.GhastSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                         BiomeSpawnUtil.addSpawn(EntityInfernalCreeper.class, LinkerConfigs.InfernalCreeperSpawn.getIntegerValue(), 1, 4, EnumCreatureType.monster, biome);
                     }
@@ -239,97 +238,97 @@ public class LinkerEvents extends Handlers {
 //        });
         Handlers.SpawnCondition.register(event -> {
 	        event.register(EntityZombieLord.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityZombieLord.class;
                 }
                 return null;
             });
 	        event.register(EntityZombiePigmanLord.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityZombiePigmanLord.class;
                 }
                 return null;
             });
 	        event.register(EntityWanderingWitch.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityWanderingWitch.class;
                 }
                 return null;
             });
 	        event.register(EntityAnnihilationSkeleton.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityAnnihilationSkeleton.class;
                 }
                 return null;
             });
 	        event.register(EntitySpiderQueen.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntitySpiderQueen.class;
                 }
                 return null;
             });
 	        event.register(EntityGhastLord.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityGhastLord.class;
                 }
                 return null;
             });
 	        event.register(EntityZombieDoorLord.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityZombieDoorLord.class;
                 }
                 return null;
             });
 	        event.register(EntityBedrockElemental.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityBedrockElemental.class;
                 }
                 return null;
             });
 	        event.register(EntityZombieDoorDeep.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3 && y < 30) {
                     return EntityZombieDoorDeep.class;
                 }
                 return null;
             });
 	        event.register(EntityZombieMiner.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityZombieMiner.class;
                 }
                 return null;
             });
 	        event.register(EntityMirrorSkeleton.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityMirrorSkeleton.class;
                 }
                 return null;
             });
 	        event.register(EntityExchanger.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityExchanger.class;
                 }
                 return null;
             });
 	        event.register(EntityZombieDoor.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityZombieDoor.class;
                 }
                 return null;
             });
 	        event.register(EntitySpiderKing.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntitySpiderKing.class;
                 }
                 return null;
             });
 	        event.register(EntityWitherBoneLord.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityWitherBoneLord.class;
                 }
                 return null;
             });
 	        event.register(EntityPigmanLord.class, (world, x, y, z) -> {
-                if (((ITEWorld) world).getDayOfOverworld() > 10) {
+                if (((ITEWorld) world).getDayOfOverworld() > 3) {
                     return EntityPigmanLord.class;
                 }
                 return null;

@@ -65,7 +65,7 @@ public class LinkerModifierEvents implements ICombatListener, ITickListener {
         if (weapon != null && target != null) {
             int level = LinkerModifierTypes.SLAUGHTER.getModifierLevel(weapon.getTagCompound());
             if (level > 0 && target instanceof EntityZombieBoss) {
-                original *= 1.0f + 0.05f * level;
+                original *= 1.0f + 0.25f * level;
             }
         }
         return original;
