@@ -23,7 +23,7 @@ import java.util.WeakHashMap;
 
 public class LinkerModifierEvents implements ICombatListener, ITickListener {
     private static final int STONE_SKIN_COOLDOWN = 2400;
-    private static final UUID FLAME_SHIELD_SPEED_UUID = UUID.fromString("9e5a2c8d-3f4b-4e7a-9c1f-5d8b2a6e0f3a");
+//    private static final UUID FLAME_SHIELD_SPEED_UUID = UUID.fromString("9e5a2c8d-3f4b-4e7a-9c1f-5d8b2a6e0f3a");
     private static final Map<EntityPlayer, Long> STONE_SKIN_COOLDOWNS = new WeakHashMap<>();
 
     @Override
@@ -32,7 +32,7 @@ public class LinkerModifierEvents implements ICombatListener, ITickListener {
         if (helmet != null) {
             int level = LinkerModifierTypes.ATMOSPHERIC_SHIELD.getModifierLevel(helmet.getTagCompound());
             if (level > 0 && damage.getSource() == DamageSource.divine_lightning) {
-                damage.scaleAmount(1.0f - 0.10f * level);
+                damage.scaleAmount(1.0f - 0.15f * level);
             }
         }
 
@@ -65,39 +65,39 @@ public class LinkerModifierEvents implements ICombatListener, ITickListener {
         if (weapon != null && target != null) {
             int level = LinkerModifierTypes.SLAUGHTER.getModifierLevel(weapon.getTagCompound());
             if (level > 0 && target instanceof EntityZombieBoss) {
-                original *= 1.0f + 0.25f * level;
+                original *= 1.0f + 0.15f * level;
             }
         }
         return original;
     }
 
-    @Override
-    public void onEntityPlayerTick(EntityPlayer player) {
-        ItemStack boots = player.getBoots();
-        int level = boots != null ? LinkerModifierTypes.FLAME_SHIELD.getModifierLevel(boots.getTagCompound()) : 0;
-        if (level > 0) {
-            applyFlameShieldSpeed(player, level);
-        } else {
-            removeFlameShieldSpeed(player);
-        }
-    }
-
-    private void applyFlameShieldSpeed(EntityPlayer player, int level) {
-        AttributeInstance attribute = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
-        AttributeModifier modifier = attribute.getModifier(FLAME_SHIELD_SPEED_UUID);
-        if (modifier != null) {
-            attribute.removeModifier(modifier);
-        }
-        attribute.applyModifier(new AttributeModifier(FLAME_SHIELD_SPEED_UUID, "flame_shield_speed", 0.025 * level, 1));
-    }
-
-    private void removeFlameShieldSpeed(EntityPlayer player) {
-        AttributeInstance attribute = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
-        AttributeModifier modifier = attribute.getModifier(FLAME_SHIELD_SPEED_UUID);
-        if (modifier != null) {
-            attribute.removeModifier(modifier);
-        }
-    }
+//    @Override
+//    public void onEntityPlayerTick(EntityPlayer player) {
+//        ItemStack boots = player.getBoots();
+//        int level = boots != null ? LinkerModifierTypes.FLAME_SHIELD.getModifierLevel(boots.getTagCompound()) : 0;
+//        if (level > 0) {
+//            applyFlameShieldSpeed(player, level);
+//        } else {
+//            removeFlameShieldSpeed(player);
+//        }
+//    }
+//
+//    private void applyFlameShieldSpeed(EntityPlayer player, int level) {
+//        AttributeInstance attribute = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+//        AttributeModifier modifier = attribute.getModifier(FLAME_SHIELD_SPEED_UUID);
+//        if (modifier != null) {
+//            attribute.removeModifier(modifier);
+//        }
+//        attribute.applyModifier(new AttributeModifier(FLAME_SHIELD_SPEED_UUID, "flame_shield_speed", 0.025 * level, 1));
+//    }
+//
+//    private void removeFlameShieldSpeed(EntityPlayer player) {
+//        AttributeInstance attribute = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+//        AttributeModifier modifier = attribute.getModifier(FLAME_SHIELD_SPEED_UUID);
+//        if (modifier != null) {
+//            attribute.removeModifier(modifier);
+//        }
+//    }
 
     private boolean isStoneSkinReady(EntityPlayer player) {
         return !STONE_SKIN_COOLDOWNS.containsKey(player)

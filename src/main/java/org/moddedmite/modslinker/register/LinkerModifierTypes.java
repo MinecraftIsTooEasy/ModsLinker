@@ -27,8 +27,12 @@ public class LinkerModifierTypes {
             0.025f, "holy_spirit", EnumChatFormatting.BLUE, 5, 4,
             stack -> stack.getItem() instanceof ItemLeggings);
 
-    public static final ArmorModifierTypes FLAME_SHIELD = new ArmorModifierTypes(
-            0.025f, "flame_shield", EnumChatFormatting.GOLD, 5, 4,
+//    public static final ArmorModifierTypes FLAME_SHIELD = new ArmorModifierTypes(
+//            0.025f, "flame_shield", EnumChatFormatting.GOLD, 5, 4,
+//            stack -> stack.getItem() instanceof ItemBoots);
+
+    public static final ArmorModifierTypes FAR_TRAVEL = new ArmorModifierTypes(
+            0.125f, "far_travel", EnumChatFormatting.GOLD, 5, 4,
             stack -> stack.getItem() instanceof ItemBoots);
 
     public static final ToolModifierTypes SLAUGHTER = new ToolModifierTypes(
@@ -36,4 +40,9 @@ public class LinkerModifierTypes {
 
     public static final ToolModifierTypes DISINTEGRATION = new ToolModifierTypes(
             1.0f, "disintegration", EnumChatFormatting.AQUA, 5, ToolModifierTypes::isWeapon, 4);
+    
+    public static float getFarTravelEfficiency(ItemStack boots) {
+        int level = boots == null ? 0 : FAR_TRAVEL.getModifierLevel(boots.getTagCompound());
+        return level <= 0 ? 0.0F : Math.min(FAR_TRAVEL.levelAddition * level, 1.0F);
+    }
 }

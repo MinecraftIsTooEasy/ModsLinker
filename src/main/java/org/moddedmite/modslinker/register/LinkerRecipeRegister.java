@@ -2,6 +2,8 @@ package org.moddedmite.modslinker.register;
 
 import cn.wensc.mitemod.extreme.item.ItemEnhanceGem;
 import cn.wensc.mitemod.extreme.register.EXItemsRegistryInit;
+import net.minecraft.Block;
+import net.xiaoyu233.mitemod.miteite.block.MITEITEBlockRegistryInit;
 import org.moddedmite.modslinker.LinkerConfigs;
 import moddedmite.rustedironcore.api.event.events.CraftingRecipeRegisterEvent;
 import net.minecraft.Item;
@@ -48,6 +50,25 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				return true;
 			}
 
+			if (result.getItem() == BEXItems.enchantPickaxe) {
+				return true;
+			}
+			if (result.getItem() == MITEITEItemRegistryInit.VIBRANIUM_PICKAXE) {
+				return true;
+			}
+//			if (result.getItem() == Items.nickelHelmet) {
+//				return true;
+//			}
+//			if (result.getItem() == Items.nickelChestplate) {
+//				return true;
+//			}
+//			if (result.getItem() == Items.nickelLeggings) {
+//				return true;
+//			}
+//			if (result.getItem() == Items.nickelBoots) {
+//				return true;
+//			}
+
 			if (result.getItem() == Items.tungstenBoots) {
 				return true;
 			}
@@ -88,6 +109,9 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 			if (result.getItem() == Item.legsAdamantium) {
 				return true;
 			}
+			if (result.getItem() == MITEITEBlockRegistryInit.furnaceVibraniumIdle.createStackedBlock(0).getItem()) {
+				return true;
+			}
 
 			return false;
 		});
@@ -107,6 +131,18 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 			if (result.getItem() == Item.legsAdamantium) {
 				return true;
 			}
+//			if (result.getItem() == Item.helmetIron) {
+//				return true;
+//			}
+//			if (result.getItem() == Item.plateIron) {
+//				return true;
+//			}
+//			if (result.getItem() == Item.legsIron) {
+//				return true;
+//			}
+//			if (result.getItem() == Item.bootsIron) {
+//				return true;
+//			}
 			return false;
 		});
 
@@ -145,20 +181,37 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 		
 		event.registerShapedRecipe(
 				new ItemStack(Items.tungstenBattleAxe), true,
+				"A A",
 				"ANA",
-				"ASA",
 				" S ",
 				'A', Items.tungstenIngot,
 				'S', Item.stick,
 				'N', Item.battleAxeAncientMetal).extendsNBT().keepQuality();
 		event.registerShapedRecipe(
 				new ItemStack(MITEITEItemRegistryInit.VIBRANIUM_BATTLE_AXE), true,
+				"A A",
 				"ANA",
-				"ASA",
 				" S ",
 				'A', MITEITEItemRegistryInit.VIBRANIUM_INGOT,
 				'S', MITEITEItemRegistryInit.OBSIDIAN_STICK,
 				'N', Items.tungstenBattleAxe).extendsNBT().keepQuality();
+
+		event.registerShapedRecipe(
+				new ItemStack(BEXItems.enchantPickaxe), true,
+				"III",
+				" A ",
+				" S ",
+				'I', BEXItems.enchantIngot,
+				'A', Item.pickaxeMithril,
+				'S', MITEITEItemRegistryInit.OBSIDIAN_STICK).extendsNBT().keepQuality();
+		event.registerShapedRecipe(
+				new ItemStack(MITEITEItemRegistryInit.VIBRANIUM_PICKAXE), true,
+				"###",
+				" A ",
+				" S ",
+				'#', MITEITEItemRegistryInit.VIBRANIUM_INGOT,
+				'A', Items.tungstenPickaxe,
+				'S', MITEITEItemRegistryInit.OBSIDIAN_STICK).extendsNBT().keepQuality();
 
 		event.registerShapedRecipe(
 				new ItemStack(Item.bootsAncientMetal), true,
@@ -283,6 +336,60 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				'N', Item.legsAdamantium,
 				'U', Items.uruIngot,
 				'B', Items.forgingNote).extendsNBT();
+
+		event.registerShapedRecipe(
+				new ItemStack(Item.helmetIron), true,
+				"###",
+				"#A#",
+				'#', Item.ingotIron,
+				'A', Item.helmetCopper).extendsNBT();
+		event.registerShapedRecipe(
+				new ItemStack(Item.plateIron), true,
+				"# #",
+				"#A#",
+				"###",
+				'#', Item.ingotIron,
+				'A', Item.plateCopper).extendsNBT();
+		event.registerShapedRecipe(
+				new ItemStack(Item.legsIron), true,
+				"#A#",
+				"# #",
+				"# #",
+				'#', Item.ingotIron,
+				'A', Item.legsCopper).extendsNBT();
+		event.registerShapedRecipe(
+				new ItemStack(Item.bootsIron), true,
+				"#A#",
+				"# #",
+				'#', Item.ingotIron,
+				'A', Item.bootsCopper).extendsNBT();
+
+		event.registerShapedRecipe(
+				new ItemStack(Items.nickelHelmet), true,
+				"###",
+				"#A#",
+				'#', Items.nickelIngot,
+				'A', Item.helmetSilver).extendsNBT();
+		event.registerShapedRecipe(
+				new ItemStack(Items.nickelChestplate), true,
+				"#A#",
+				"###",
+				"###",
+				'#', Items.nickelIngot,
+				'A', Item.plateSilver).extendsNBT();
+		event.registerShapedRecipe(
+				new ItemStack(Items.nickelLeggings), true,
+				"###",
+				"#A#",
+				"# #",
+				'#', Items.nickelIngot,
+				'A', Item.legsSilver).extendsNBT();
+		event.registerShapedRecipe(
+				new ItemStack(Items.nickelBoots), true,
+				"#A#",
+				"# #",
+				'#', Items.nickelIngot,
+				'A', Item.bootsSilver).extendsNBT();
 
 		event.registerShapelessRecipe(
 				new ItemStack(Items.forgingNote, 2), true,
@@ -465,6 +572,14 @@ public class LinkerRecipeRegister implements Consumer<CraftingRecipeRegisterEven
 				'A', EXItemsRegistryInit.voucherClubCore,
 				'B', EXItemsRegistryInit.clubMithril).extendsNBT().keepQuality();
 		
+		event.registerShapedRecipe(
+				new ItemStack(MITEITEBlockRegistryInit.furnaceVibraniumIdle, 1), true,
+				"VVV",
+				"VAV",
+				"VVV",
+				'V', MITEITEItemRegistryInit.VIBRANIUM_NUGGET,
+				'A', Block.furnaceNetherrackIdle);
+
 		for (Item item : Item.itemsList) {
 			if (item instanceof ItemEnhanceGem enhanceGem) {
 				for (int i = 0; i < enhanceGem.getNumSubtypes(); i++)

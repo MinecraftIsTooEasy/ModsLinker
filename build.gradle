@@ -59,6 +59,7 @@ dependencies {
     implementation "org.moddedmite:MITE-ITE:2.0.30"
     implementation "org.moddedmite:mite-itf-reborn:17.3.0"
     localRuntime "org.moddedmite:waila:2.0.8"
+    localRuntime "org.moddedmite:omc:3.0.1"
 
 }
 

@@ -1,10 +1,13 @@
 modifier.armor.anti_corrosion.name=防腐
 modifier.armor.atmospheric_shield.name=气盾
 modifier.armor.stone_skin.name=石肤
-modifier.armor.holy_spirit.name=圣杯
-modifier.armor.flame_shield.name=火盾
+modifier.armor.holy_spirit.name=祈祷
+modifier.armor.far_travel.name=远行
 modifier.tool.slaughter.name=屠戮
 modifier.tool.disintegration.name=瓦解
 
 enchantment.shatter=破解
 enchantment.phase_counter=相位反制
+enchantment.restore=还原
+enchantment.dispel=驱散
+enchantment.swift_sneak=迅捷潜行

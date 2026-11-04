@@ -23,6 +23,9 @@ public class LinkerConfigs extends SimpleConfigs {
 	public static final ConfigDouble WitherHealth = new ConfigDouble("凋灵生命值", 300.0D, 1.0D, 10000.0D, false, "");
 	public static final ConfigDouble WitherDamage = new ConfigDouble("凋灵伤害", 8.0D, 1.0D, 10000.0D, false, "");
 	
+	public static final ConfigInteger ZombieBossHealth = new ConfigInteger("僵尸boss生命值", 20, 1, Short.MAX_VALUE, false, "");
+	public static final ConfigInteger ZombieBossDropsCount = new ConfigInteger("僵尸boss钻石数量限制", 10, 1, Short.MAX_VALUE, false, "");
+
 	public static final ConfigInteger EndermanSpawn = new ConfigInteger("末影人刷新率", 10, 1, 100);
 	public static final ConfigInteger AncientBoneLordSpawn = new ConfigInteger("古代亡骸领主刷新率", 5, 1, 100);
 	public static final ConfigInteger InfernalCreeperSpawn = new ConfigInteger("地狱苦力怕刷新率", 10, 1, 100);
@@ -49,16 +52,18 @@ public class LinkerConfigs extends SimpleConfigs {
 	public static final ConfigInteger PigmanLordSpawn = new ConfigInteger("猪人领主刷新率", 1, 1, 100);
 	public static final ConfigInteger SpiritSpawn = new ConfigInteger("阴魂刷新率", 5, 1, 100);
 	
-	public static final ConfigInteger OverworldNickelFrequency = new ConfigInteger("主世界镍矿刷新率", 15, 1, 100);
-	public static final ConfigInteger UnderworldNickelFrequency = new ConfigInteger("地下世界镍矿刷新率", 25, 1, 100);
-	public static final ConfigInteger UnderworldTungstenFrequency = new ConfigInteger("地下世界钨矿刷新率", 5, 1, 100);
+	public static final ConfigInteger OverworldNickelFrequency = new ConfigInteger("主世界镍矿刷新率", 15, 0, 100);
+	public static final ConfigInteger UnderworldNickelFrequency = new ConfigInteger("地下世界镍矿刷新率", 25, 0, 100);
+	public static final ConfigInteger UnderworldTungstenFrequency = new ConfigInteger("地下世界钨矿刷新率", 5, 0, 100);
 
 	public static final ConfigInteger FishVoucherFrequency = new ConfigInteger("钓鱼凭证权重", 2, 1, 100);
 //	public static final ConfigInteger VillagerVoucherFrequency = new ConfigInteger("挖掘绿宝石掉落交易凭证概率", 50, 1, 100);
 
 	public static final ConfigDouble mobSpawningOffset = new ConfigDouble("怪物生成速率加成", 0.0, 0.0, 3.0);
 
-	public static final ConfigBoolean CustomNuggetRecipes = new ConfigBoolean("自定义粒合成锭配方", true);
+	public static final ConfigDouble MobArmorPiercingChance = new ConfigDouble("低攻怪物无视护甲真伤概率", 0.1D, 0.0D, 1.0D);
+
+	public static final ConfigBoolean CustomNuggetRecipes = new ConfigBoolean("更难的金属锭合成配方", false);
 
 	public static final List<ConfigBase<?>> general;
 	public static final List<ConfigBase<?>> values;
@@ -71,14 +76,14 @@ public class LinkerConfigs extends SimpleConfigs {
 	public static final LinkerConfigs Instance;
 	
 	static {
-		general = List.of(RateMultiplier, LichHealth, WitherHealth, WitherDamage,
+		general = List.of(RateMultiplier, LichHealth, WitherHealth, WitherDamage, ZombieBossHealth, ZombieBossDropsCount,
 				EndermanSpawn, AncientBoneLordSpawn, InfernalCreeperSpawn, GhastSpawn,
 				ZombieLordSpawn, ZombiePigmanLordSpawn, WanderingWitchSpawn, AnnihilationSkeletonSpawn,
 				ExchangerSpawn, ZombieDoorSpawn, MirrorSkeletonSpawn,
 				ZombieDoorDeepSpawn, SpiderQueenSpawn, ZombieMinerSpawn, ZombieDoorLordSpawn, BedrockElementalSpawn,
 				SpiderKingSpawn, RetinueZombieSpawn, WitherBoneLordSpawn, PigmanLordSpawn, SpiritSpawn,
 				OverworldNickelFrequency, UnderworldNickelFrequency, UnderworldTungstenFrequency,
-				FishVoucherFrequency, mobSpawningOffset,
+				FishVoucherFrequency, mobSpawningOffset, MobArmorPiercingChance,
 				CustomNuggetRecipes);
 
 		values = new ArrayList<>();

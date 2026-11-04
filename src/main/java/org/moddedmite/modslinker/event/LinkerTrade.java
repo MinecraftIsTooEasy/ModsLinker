@@ -26,10 +26,10 @@ public class LinkerTrade implements Consumer<TradingRegisterEvent> {
 					if (rand.nextFloat() < villager.adjustProbability(0.5F))
 						recipeList.add(new MerchantRecipe(new ItemStack(Item.emerald, 8), new ItemStack(Item.appleGold.itemID, 2)));
 				})
-				.addEntry((recipeList, villager, rand) -> {
-					if (rand.nextFloat() < villager.adjustProbability(0.5F))
-						recipeList.add(new MerchantRecipe(new ItemStack(Item.diamond, 32), new ItemStack(Items.ancientMetalArmorPiece, 16), new ItemStack(EXItemsRegistryInit.itemEnhanceGemBox.itemID, 3)));
-				})
+//				.addEntry((recipeList, villager, rand) -> {
+//					if (rand.nextFloat() < villager.adjustProbability(0.5F))
+//						recipeList.add(new MerchantRecipe(new ItemStack(Item.diamond, 32), new ItemStack(Items.ancientMetalArmorPiece, 16), new ItemStack(EXItemsRegistryInit.itemEnhanceGemBox.itemID, 3)));
+//				})
 				.addEntry((recipeList, villager, rand) -> {
 					if (rand.nextFloat() < villager.adjustProbability(0.5F))
 						recipeList.add(new MerchantRecipe(new ItemStack(Item.diamond, 32), new ItemStack(Item.ghastTear, 16), new ItemStack(BEXItems.voucherGhast.itemID, 4)));

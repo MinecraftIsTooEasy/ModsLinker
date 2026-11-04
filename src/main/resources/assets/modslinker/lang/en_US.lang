@@ -2,9 +2,12 @@ modifier.armor.anti_corrosion.name=Anti-Corrosion
 modifier.armor.atmospheric_shield.name=Atmospheric Shield
 modifier.armor.stone_skin.name=Stone Skin
 modifier.armor.holy_spirit.name=Holy Spirit
-modifier.armor.flame_shield.name=Flame Shield
+modifier.armor.far_travel.name=Far Travel
 modifier.tool.slaughter.name=Slaughter
 modifier.tool.disintegration.name=Disintegration
 
 enchantment.shatter=Shatter
 enchantment.phase_counter=Phase Counter
+enchantment.restore=Restore
+enchantment.dispel=Dispel
+enchantment.swift_sneak=Swift Sneak

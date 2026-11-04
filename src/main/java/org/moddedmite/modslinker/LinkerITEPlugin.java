@@ -11,6 +11,7 @@ public class LinkerITEPlugin implements ITEPlugin {
 		registry.registerArmorModifier(LinkerModifierTypes.HOLY_SPIRIT);
 		registry.registerArmorModifier(LinkerModifierTypes.STONE_SKIN);
 		registry.registerArmorModifier(LinkerModifierTypes.ANTI_CORROSION);
+		registry.registerArmorModifier(LinkerModifierTypes.FAR_TRAVEL);
 		registry.registerToolModifier(LinkerModifierTypes.SLAUGHTER);
 		registry.registerToolModifier(LinkerModifierTypes.DISINTEGRATION);
 	}
